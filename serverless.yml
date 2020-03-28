@@ -1,0 +1,33 @@
+service: sequelizePOC
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+  stage: ${opt:stage, 'dev'}
+  versionFunctions: false
+
+  environment:
+    stage: ${self:provider.stage}
+    db_username: ${file(./config.${self:provider.stage}.json):username}
+    db_password: ${file(./config.${self:provider.stage}.json):password}
+    db_host: ${file(./config.${self:provider.stage}.json):host}
+functions:
+  user:
+    handler: src/user/user.user
+    events:
+      - http:
+          path: user
+          method: get
+  updateUser:
+    handler: src/user/updateUser.updateUser
+    events:
+      - http:
+          path: user
+          method: put
+  createUser:
+    handler: src/user/createUser.createUser
+    events:
+      - http:
+          path: user
+          method: post
