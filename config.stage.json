@@ -1,0 +1,6 @@
+{
+  "_comment": "Archivo JSON de ejemplo con las variables de conexión a la BD necesarias para las funciones lambda",
+  "username": "xxxxxxx",
+  "password": "xxxxxxxx",
+  "host": "xxxxxxxxxxxxxxx"
+}
